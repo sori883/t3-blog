@@ -1,8 +1,8 @@
 # This template is heavily inspired by the Next.js's template:
 # See here: https://github.com/vercel/next.js/blob/canary/.github/ISSUE_TEMPLATE/3.feature_request.yml
 
-name: 🛠 Feature Request
-description: Create a feature request for the core packages
+name: 🛠 Feature
+description: Create a feature
 title: "feat: "
 labels: ["✨ enhancement"]
 body:
