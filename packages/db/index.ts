@@ -9,6 +9,8 @@ export const schema = { ...auth, ...post };
 export { mySqlTable as tableCreator } from "./schema/_table";
 
 export * from "drizzle-orm";
+export type * from "./schema/auth";
+export type * from "./schema/post";
 
 export const db = drizzle(
   new Client({

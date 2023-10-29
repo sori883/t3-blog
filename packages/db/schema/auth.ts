@@ -10,6 +10,7 @@ import {
 } from "drizzle-orm/mysql-core";
 
 import { mySqlTable } from "./_table";
+import { categories, posts } from "./post";
 
 export const users = mySqlTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
@@ -24,6 +25,8 @@ export const users = mySqlTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
+  posts: many(posts),
+  categories: many(categories),
 }));
 
 export const accounts = mySqlTable(
@@ -82,3 +85,6 @@ export const verificationTokens = mySqlTable(
     compoundKey: primaryKey(vt.identifier, vt.token),
   }),
 );
+
+export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;
