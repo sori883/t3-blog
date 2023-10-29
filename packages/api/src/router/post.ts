@@ -2,55 +2,26 @@ import { z } from "zod";
 
 import { desc, eq, schema } from "@acme/db";
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
-  protectedPing: publicProcedure
-    .input(z.object({ text: z.string() }))
+  /*
+      トップページ用の記事を取得する
+    */
+  index: publicProcedure
+    .input(z.object({ limit: z.number(), offset: z.number() }))
     .query(({ ctx, input }) => {
-      return {
-        greeting: `Hello ${ctx.session?.user.id} san, this is protected ping -> ${input.text}`,
-      };
-    }),
+      const { limit, offset } = input;
 
-  publicProcedure: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello this is public ping -> ${input.text}`,
-      };
-    }),
-
-  all: publicProcedure.query(({ ctx }) => {
-    // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
-    return ctx.db.query.post.findMany({ orderBy: desc(schema.post.id) });
-  }),
-
-  byId: publicProcedure
-    .input(z.object({ id: z.number() }))
-    .query(({ ctx, input }) => {
-      // return ctx.db
-      //   .select()
-      //   .from(schema.post)
-      //   .where(eq(schema.post.id, input.id));
-
-      return ctx.db.query.post.findFirst({
-        where: eq(schema.post.id, input.id),
+      return ctx.db.query.posts.findMany({
+        with: {
+          category: true,
+          postsToTags: true,
+        },
+        where: eq(schema.posts.isPublish, true),
+        orderBy: desc(schema.posts.createdAt),
+        limit,
+        offset,
       });
     }),
-
-  create: protectedProcedure
-    .input(
-      z.object({
-        title: z.string().min(1),
-        content: z.string().min(1),
-      }),
-    )
-    .mutation(({ ctx, input }) => {
-      return ctx.db.insert(schema.post).values(input);
-    }),
-
-  delete: protectedProcedure.input(z.number()).mutation(({ ctx, input }) => {
-    return ctx.db.delete(schema.post).where(eq(schema.post.id, input));
-  }),
 });
