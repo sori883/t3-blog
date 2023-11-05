@@ -1,22 +1,23 @@
 import { api } from "~/utils/server";
-import { PostCard } from "~/components/post"
+import { Link } from "~/components/elements/link";
 
 export async function CategorySidebarList() {
-  const posts = await api.post.index.query({ limit: 10, offset: 0 });
+  const categories = await api.category.all.query();
 
-  if (posts.length === 0) {
+  if (categories.length === 0) {
     return (
       <div className="relative flex w-full flex-col gap-4">
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
-        <p className="text-2xl font-bold text-white">No post yet</p>
+        <p className="text-2xl font-bold text-white">No category yet</p>
       </div>
     </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      {posts.map((p) => (<PostCard key={p.id} post={p} />))}
-    </div>
+    <ul className="ui_menu bg-base-200 ui_rounded-box w-full">
+      <li className="ui_menu-title">Category</li>
+      {categories.map((c) => (<li key={c.id}><Link>{c.title}</Link></li>))}
+    </ul>
   );
 }
