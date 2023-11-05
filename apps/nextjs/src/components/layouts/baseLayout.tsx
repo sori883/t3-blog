@@ -1,5 +1,4 @@
-import { Header, Footer } from "~/components/layouts";
-import { Link } from "~/components/elements/link"
+import { Header, Footer, Sidebar } from "~/components/layouts";
 
 export const BaseLayout = ({ children }: { children: React.ReactNode }) => (
   <div>
@@ -9,14 +8,15 @@ export const BaseLayout = ({ children }: { children: React.ReactNode }) => (
         {children}
       </div>
       <div className="colspan-1 bg-base-200">
-      <ul className="ui_menu bg-base-200 ui_rounded-box w-full">
-        <li className="ui_menu-title">Title</li>
-        <li><Link>Item 1</Link></li>
-        <li><Link>Item 2</Link></li>
-        <li><Link>Item 3</Link></li>
-      </ul>
+      <Sidebar />
       </div>
     </div>
     <Footer />
+  </div>
+);
+
+export const ContentLayout = ({ children }: { children: React.ReactNode }) => (
+  <div className="w-full h-full border-2 p-4">
+    {children}
   </div>
 );

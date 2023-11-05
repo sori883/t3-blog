@@ -5,7 +5,9 @@
   "scripts": {
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf .next .turbo node_modules",
-    "dev": "pnpm with-env next dev",
+    "dev": "pnpm with-env run-p dev:*",
+    "dev:next": "next dev",
+    "dev:path": "pathpida --watch",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
     "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
     "start": "pnpm with-env next start",
@@ -36,12 +38,15 @@
     "@acme/prettier-config": "^0.1.0",
     "@acme/tailwind-config": "^0.1.0",
     "@acme/tsconfig": "^0.1.0",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^18.18.5",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "daisyui": "^3.9.4",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.51.0",
+    "npm-run-all": "^4.1.5",
+    "pathpida": "^0.22.0",
     "prettier": "^3.0.3",
     "tailwindcss": "3.3.2",
     "typescript": "^5.2.2"
@@ -52,6 +57,9 @@
       "@acme/eslint-config/base",
       "@acme/eslint-config/nextjs",
       "@acme/eslint-config/react"
+    ],
+    "ignorePatterns": [
+      "$path.ts"
     ]
   },
   "prettier": "@acme/prettier-config"

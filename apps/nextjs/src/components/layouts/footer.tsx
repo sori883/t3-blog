@@ -1,4 +1,5 @@
 import { Link } from "~/components/elements/link"
+import { pagesPath } from "~/utils/$path";
 
 export const Footer = () => {
   return (
@@ -6,8 +7,18 @@ export const Footer = () => {
       <footer className="ui_footer bg-base-200 text-base-content p-10">
         <nav>
           <header className="ui_footer-title">About</header>
-          <Link className="ui_link ui_link-hover">このサイトについて</Link>
-          <Link className="ui_link ui_link-hover">免責事項</Link>
+          <Link
+            className="ui_link ui_link-hover"
+            href={pagesPath.about.$url().pathname}
+          >
+            このサイトについて
+          </Link>
+          <Link
+            className="ui_link ui_link-hover"
+            href={pagesPath.privacypolicy.$url().pathname}
+          >
+            免責事項
+          </Link>
         </nav>
       </footer>
       <footer className="ui_footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
