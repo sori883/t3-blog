@@ -38,7 +38,9 @@ export const metadata: Metadata = {
 export default function Layout(props: { children: React.ReactNode }) {
   return (
     <html lang="jp">
-      <body className={["font-sans", fontSans.variable].join(" ")}>
+      <body
+        className={`${["font-sans", fontSans.variable].join(" ")} bg-blue-50`}
+      >
         <TRPCReactProvider headers={headers()}>
           {props.children}
         </TRPCReactProvider>

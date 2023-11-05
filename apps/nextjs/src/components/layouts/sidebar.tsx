@@ -4,6 +4,6 @@ export const Sidebar= () => {
   return (
     <div>
       <CategorySidebarList />
-  </div>
+    </div>
 );
 }

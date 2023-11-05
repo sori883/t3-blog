@@ -4,7 +4,7 @@ import { pagesPath } from "~/utils/$path";
 export const Footer = () => {
   return (
     <div>
-      <footer className="ui_footer bg-base-200 text-base-content p-10">
+      <footer className="ui_footer bg-white text-base-content p-10">
         <nav>
           <header className="ui_footer-title">About</header>
           <Link
@@ -21,7 +21,7 @@ export const Footer = () => {
           </Link>
         </nav>
       </footer>
-      <footer className="ui_footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+      <footer className="ui_footer bg-white text-base-content border-base-300 border-t px-10 py-4">
         <aside className="grid-flow-col items-center">
           <svg
             width="24"

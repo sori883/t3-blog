@@ -7,7 +7,7 @@ export const BaseLayout = ({ children }: { children: React.ReactNode }) => (
       <div className="colspan-1 md:col-span-3">
         {children}
       </div>
-      <div className="colspan-1 bg-base-200">
+      <div className="colspan-1 bg-white">
       <Sidebar />
       </div>
     </div>
@@ -16,7 +16,7 @@ export const BaseLayout = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const ContentLayout = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-full h-full border-2 p-4">
+  <div className="w-full h-full border-2 p-4 bg-white">
     {children}
   </div>
 );
