@@ -6,7 +6,7 @@ export function PostCard(props: {
   post: RouterOutputs["post"]["index"][number];
 }) {
   return (
-    <div className="ui_card w-96 bg-base-100 shadow-xl">
+    <div className="ui_card w-96 bg-white shadow-xl">
       <figure className="relative w-96 h-48"><Image src={props.post.thumbnailUrl} alt="icon" /></figure>
       <div className="ui_card-body">
         <h2 className="ui_card-title">
