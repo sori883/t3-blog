@@ -83,7 +83,7 @@ async function main() {
       isPublish: true,
       description: "ポスト1です。",
       thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
-      categoryId: cate[0]!.id,
+      categorySlug: cate[0]!.slug,
       userId: user[0]!.id,
     },
     {
@@ -93,7 +93,7 @@ async function main() {
       isPublish: true,
       description: "ポスト2です。",
       thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
-      categoryId: cate[0]!.id,
+      categorySlug: cate[0]!.slug,
       userId: user[0]!.id,
     },
     {
@@ -103,7 +103,7 @@ async function main() {
       isPublish: true,
       description: "ポスト3です。",
       thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
-      categoryId: cate[0]!.id,
+      categorySlug: cate[0]!.slug,
       userId: user[0]!.id,
     },
   ];

@@ -10,6 +10,11 @@ export const pagesPath = {
   "about": {
     $url: (url?: { hash?: string }) => ({ pathname: '/about' as const, hash: url?.hash, path: `/about${buildSuffix(url)}` })
   },
+  "post": {
+    _category: (category: string | number) => ({
+      $url: (url?: { hash?: string }) => ({ pathname: '/post/[category]' as const, query: { category }, hash: url?.hash, path: `/post/${category}${buildSuffix(url)}` })
+    })
+  },
   "privacypolicy": {
     $url: (url?: { hash?: string }) => ({ pathname: '/privacypolicy' as const, hash: url?.hash, path: `/privacypolicy${buildSuffix(url)}` })
   },

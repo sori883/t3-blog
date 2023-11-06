@@ -21,7 +21,7 @@ export const posts = mySqlTable(
     title: varchar("title", { length: 255 }).notNull(),
     entry: text("entry").notNull(),
     isPublish: boolean("is_publish").default(false).notNull(),
-    categoryId: int("category_id"),
+    categorySlug: varchar("category_slug", { length: 50 }).notNull(),
     description: varchar("description", { length: 255 }).notNull(),
     thumbnailUrl: varchar("thumbnail_url", { length: 255 }).notNull(),
     userId: varchar("user_id", { length: 255 }).notNull(),
@@ -38,10 +38,10 @@ export const posts = mySqlTable(
 export const postRelations = relations(posts, ({ one, many }) => ({
   user: one(users, { fields: [posts.userId], references: [users.id] }),
   category: one(categories, {
-    fields: [posts.categoryId],
-    references: [categories.id],
+    fields: [posts.categorySlug],
+    references: [categories.slug],
   }),
-  postsToTags: many(postsToTags), // @ADD
+  postsToTags: many(postsToTags),
 }));
 
 export const categories = mySqlTable(
