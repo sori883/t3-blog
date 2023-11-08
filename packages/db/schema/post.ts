@@ -93,6 +93,10 @@ export const postsToTags = mySqlTable(
   {
     postId: int("post_id").notNull(),
     tagId: int("tags_id").notNull(),
+    createdAt: timestamp("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updatedAt").onUpdateNow(),
   },
   (t) => ({
     pk: primaryKey(t.postId, t.tagId),
