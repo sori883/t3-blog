@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { desc, eq, schema, and } from "@acme/db";
+import { desc, eq, schema, and, sql } from "@acme/db";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
@@ -10,10 +10,10 @@ export const postRouter = createTRPCRouter({
     */
   index: publicProcedure
     .input(z.object({ limit: z.number(), offset: z.number() }))
-    .query(({ ctx, input }) => {
+    .query(async ({ ctx, input }) => {
       const { limit, offset } = input;
 
-      return ctx.db.query.posts.findMany({
+      const posts = await ctx.db.query.posts.findMany({
         with: {
           category: true,
           postsToTags: true,
@@ -23,6 +23,17 @@ export const postRouter = createTRPCRouter({
         limit,
         offset,
       });
+
+      // ページネーション用に上記と同じ検索条件でカウントを取得する
+      const totalCount = await ctx.db
+      .select({ count: sql<number>`count(*)` })
+      .from(schema.posts)
+      .where(eq(schema.posts.isPublish, true))
+
+      return {
+        posts,
+        totalCount:totalCount[0]?.count ?? 0
+      }
     }),
 
   /*
@@ -30,10 +41,10 @@ export const postRouter = createTRPCRouter({
   */
   postsInCategory: publicProcedure
   .input(z.object({ slug: z.string(), limit: z.number(), offset: z.number() }))
-  .query(({ ctx, input }) => {
+  .query(async ({ ctx, input }) => {
     const { slug, limit, offset } = input;
 
-    return ctx.db.query.posts.findMany({
+    const posts = await ctx.db.query.posts.findMany({
       with: {
         category: true,
         postsToTags: true,
@@ -42,9 +53,23 @@ export const postRouter = createTRPCRouter({
         eq(schema.posts.isPublish, true), 
         eq(schema.posts.categorySlug, slug)
       ),
-      orderBy: desc(schema.posts.createdAt),
+      orderBy: desc(schema.posts.id),
       limit,
       offset,
     });
+
+    // ページネーション用に上記と同じ検索条件でカウントを取得する
+    const totalCount = await ctx.db
+    .select({ count: sql<number>`count(*)` })
+    .from(schema.posts)
+    .where(and(
+        eq(schema.posts.isPublish, true), 
+        eq(schema.posts.categorySlug, slug))
+    )
+
+      return {
+        posts,
+        totalCount:totalCount[0]?.count ?? 0
+      }
   }),
 });

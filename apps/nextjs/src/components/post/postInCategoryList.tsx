@@ -1,8 +1,11 @@
 import { api } from "~/utils/server";
 import { PostCard } from "~/components/post"
+import { Pagination } from "~/components/elements/pagination";
+import { makeLimitOffset } from "~/components/elements/pagination/"
 
-export async function PostInCategoryList(props: {slug: string}) {
-  const posts = await api.post.postsInCategory.query({slug: props.slug, limit: 10, offset: 0 });
+export async function PostInCategoryList(props: {slug: string, page: string | undefined}) {
+  const { limit, offset } = makeLimitOffset(props.page);
+  const { posts, totalCount } = await api.post.postsInCategory.query({slug: props.slug, limit, offset });
 
   if (posts.length === 0) {
     return (
@@ -15,8 +18,11 @@ export async function PostInCategoryList(props: {slug: string}) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      {posts.map((p) => (<PostCard key={p.id} post={p} />))}
+    <div>
+      <div className="grid grid-cols-2 gap-4 mb-12">
+        {posts.map((p) => (<PostCard key={p.id} post={p} />))}
+      </div>
+      <Pagination totalCount={totalCount} />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { formatDate } from "~/utils/formatDate"
 import { Image } from "~/components/elements/image";
 
 export function PostCard(props: {
-  post: RouterOutputs["post"]["index"][number];
+  post: RouterOutputs["post"]["index"]["posts"][number];
 }) {
   return (
     <div className="ui_card w-96 bg-white shadow-xl">

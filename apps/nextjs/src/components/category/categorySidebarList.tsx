@@ -26,7 +26,7 @@ export async function CategorySidebarList() {
       <li className="ui_menu-title">Category</li>
       {categories.map((c) => (
         <li key={c.id}>
-          <Link href={`/post/${c.slug}/`}>
+          <Link href={`/${c.slug}/`}>
             {c.title}
           </Link>
         </li>

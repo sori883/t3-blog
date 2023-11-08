@@ -75,38 +75,19 @@ async function main() {
   */
   const cate: Category[] = await db.select().from(schema.categories).limit(1);
 
-  const posts: InsertPost[] = [
-    {
-      title: "ポスト1",
-      slug: "post1",
-      entry: "post1です。",
+  const posts: InsertPost[] =[]
+  for (let i = 1; i < 100; i++){
+    posts.push({
+      title: `ポスト${i}`,
+      slug: `post${i}`,
+      entry: `これはポスト${i}のentry`,
       isPublish: true,
-      description: "ポスト1です。",
+      description: `これはポスト${i}のdiscription`,
       thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
       categorySlug: cate[0]!.slug,
       userId: user[0]!.id,
-    },
-    {
-      title: "ポスト2",
-      slug: "post2",
-      entry: "post2です。",
-      isPublish: true,
-      description: "ポスト2です。",
-      thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
-      categorySlug: cate[0]!.slug,
-      userId: user[0]!.id,
-    },
-    {
-      title: "ポスト3",
-      slug: "post3",
-      entry: "post3です。",
-      isPublish: true,
-      description: "ポスト3です。",
-      thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
-      categorySlug: cate[0]!.slug,
-      userId: user[0]!.id,
-    },
-  ];
+    },)
+  }
 
   const postsInserted = await db.insert(schema.posts).values(posts);
   console.log(postsInserted);
@@ -114,7 +95,7 @@ async function main() {
   /*
     tagとpostの中間テーブル
   */
-  const selectPost: Post[] = await db.select().from(schema.posts);
+  const selectPost: Post[] = await db.select().from(schema.posts).limit(20);
   const selectTag: Tag[] = await db.select().from(schema.tags).limit(1);
 
   const postsToTags: InsertPostsToTags[] = selectPost.map((item) => ({

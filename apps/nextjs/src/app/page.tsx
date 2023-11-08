@@ -3,10 +3,10 @@ import { BaseLayout } from "~/components/layouts";
 
 import { PostIndexList } from "~/components/post"
 
-export default function HomePage() {
+export default function HomePage({ searchParams }: { searchParams: {page: string | undefined}}) {
   return (
     <BaseLayout>
-      <PostIndexList />
+      <PostIndexList page={searchParams.page}  />
     </BaseLayout>
   );
 }
