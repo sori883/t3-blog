@@ -19,6 +19,12 @@ export const Footer = () => {
           >
             免責事項
           </Link>
+          <Link
+            className="ui_link ui_link-hover"
+            href={pagesPath.contact.$url().pathname}
+          >
+            お問い合わせ
+          </Link>
         </nav>
       </footer>
       <footer className="ui_footer bg-white text-base-content border-base-300 border-t px-10 py-4">
