@@ -72,4 +72,29 @@ export const postRouter = createTRPCRouter({
         totalCount:totalCount[0]?.count ?? 0
       }
   }),
+
+  /*
+    特定カテゴリの記事を取得する
+  */
+    findBySlug: publicProcedure
+    .input(z.object({ slug: z.string()}))
+    .query(({ ctx, input }) => {
+      const { slug } = input;
+  
+      return  ctx.db.query.posts.findFirst({
+        with: {
+          category: true,
+          postsToTags: {
+            with: {
+              tag: true
+            }
+          }
+        },
+        where: and(
+          eq(schema.posts.isPublish, true), 
+          eq(schema.posts.slug, slug)
+        ),
+      });
+    }),
+
 });
