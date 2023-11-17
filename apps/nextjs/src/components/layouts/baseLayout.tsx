@@ -10,7 +10,7 @@ export const BaseLayout = ({ children }: { children: React.ReactNode }) => (
         <div className="colspan-1 md:col-span-3">
           {children}
         </div>
-        <div className="colspan-1 bg-white">
+        <div className="colspan-1">
         <Sidebar />
         </div>
       </div>
