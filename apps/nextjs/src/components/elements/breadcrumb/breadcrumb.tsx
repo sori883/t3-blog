@@ -6,6 +6,7 @@ import { pagesPath } from "~/utils/$path";
 
 export function Breadcrumb() {
     const pathname = usePathname();
+    if (pathname === "/") return
 
     // 2階層以上に対応するため、
     // 表示用pathnameとリンク用pathnameを個別に生成する
@@ -19,7 +20,6 @@ export function Breadcrumb() {
         }
       }
     })
-
 
     return (
       <div className="text-sm ui_breadcrumbs ml-2">
