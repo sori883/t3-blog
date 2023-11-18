@@ -1,4 +1,4 @@
-import { markdownToHtml } from "~/components/elements/markdown"
+import { markdownToHtml } from "~/markdown"
 
 
 export function MarkdownRenderer(props: {
@@ -6,6 +6,9 @@ export function MarkdownRenderer(props: {
 }) {
   const html = markdownToHtml(props.text)
     return (
+      <div>
         <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+
     );
 }
