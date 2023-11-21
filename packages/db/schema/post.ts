@@ -7,7 +7,7 @@ import {
   text,
   timestamp,
   unique,
-  varchar,
+  varchar
 } from "drizzle-orm/mysql-core";
 
 import { mySqlTable } from "./_table";
@@ -31,7 +31,7 @@ export const posts = mySqlTable(
     updatedAt: timestamp("updatedAt").onUpdateNow(),
   },
   (t) => ({
-    unqName: unique().on(t.slug),
+    unqName: unique().on(t.slug, t.categorySlug),
   }),
 );
 
