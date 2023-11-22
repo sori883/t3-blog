@@ -16,7 +16,7 @@ importers:
         version: 0.21.0
       '@turbo/gen':
         specifier: ^1.10.15
-        version: 1.10.15(@types/node@20.9.1)(typescript@5.2.2)
+        version: 1.10.15(@types/node@18.18.5)(typescript@5.2.2)
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -83,6 +83,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      react-icons:
+        specifier: ^4.12.0
+        version: 4.12.0(react@18.2.0)
       sanitize-html:
         specifier: ^2.11.0
         version: 2.11.0
@@ -439,7 +442,7 @@ packages:
       '@panva/hkdf': 1.1.1
       cookie: 0.5.0
       jose: 4.15.4
-      oauth4webapi: 2.3.0
+      oauth4webapi: 2.4.0
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
@@ -1786,7 +1789,7 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: false
 
-  /@turbo/gen@1.10.15(@types/node@20.9.1)(typescript@5.2.2):
+  /@turbo/gen@1.10.15(@types/node@18.18.5)(typescript@5.2.2):
     resolution: {integrity: sha512-nvCiw2Como/K1LfqBQBpp+IiFEWQtlhx5f6iXIpmioj2DtVTg+RmyQM+5nIqbi8iaXg3zaF5vQo29bTyuohUuw==}
     dependencies:
       '@turbo/workspaces': 1.10.15
@@ -1797,7 +1800,7 @@ packages:
       minimatch: 9.0.3
       node-plop: 0.26.3
       proxy-agent: 6.3.0
-      ts-node: 10.9.1(@types/node@20.9.1)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@18.18.5)(typescript@5.2.2)
       update-check: 1.5.4
       validate-npm-package-name: 5.0.0
     transitivePeerDependencies:
@@ -1882,12 +1885,6 @@ packages:
 
   /@types/node@18.18.5:
     resolution: {integrity: sha512-4slmbtwV59ZxitY4ixUZdy1uRLf9eSIvBWPQxNjhHYWEtn0FryfKpyS2cvADYXTayWdKEIsJengncrVvkI4I6A==}
-
-  /@types/node@20.9.1:
-    resolution: {integrity: sha512-HhmzZh5LSJNS5O8jQKpJ/3ZcrrlG6L70hpGqMIAoM9YVD0YBRNWYsfwcXq8VnSjlNpCpgLzMXdiPo+dxcvSmiA==}
-    dependencies:
-      undici-types: 5.26.5
-    dev: false
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -5533,6 +5530,14 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-icons@4.12.0(react@18.2.0):
+    resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -6184,7 +6189,7 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@20.9.1)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@18.18.5)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -6203,7 +6208,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.9.1
+      '@types/node': 18.18.5
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.0
@@ -6370,10 +6375,6 @@ packages:
       has-bigints: 1.0.2
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
-
-  /undici-types@5.26.5:
-    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
-    dev: false
 
   /universalify@0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}

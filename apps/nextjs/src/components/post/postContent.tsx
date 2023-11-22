@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Image } from "~/components/elements/image"
 import { formatDate } from "~/utils/formatDate"
 import { MarkdownRenderer } from "~/components/elements/markdown";
+import { ShareSns } from "~/components/elements/sns";
 
 // TODO:delete
 import {test} from "./test";
@@ -29,6 +30,9 @@ export async function PostContent(props: {
       <figure className="relative w-full h-80 mb-10">
         <Image src={post.thumbnailUrl} alt="アイキャッチ" />
       </figure>
+      <div className="mb-10">
+        <ShareSns post={post} />
+      </div>
       <article className="prose lg:prose-xl">
         {post.entry}
       <MarkdownRenderer text={test} />

@@ -15,13 +15,14 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
+    APP_DOMAIN: z.string(),
   },
   /**
    * Specify your client-side environment variables schema here.
    * For them to be exposed to the client, prefix them with `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_APP_DOMAIN: z.string(),
   },
   /**
    * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
@@ -30,7 +31,8 @@ export const env = createEnv({
     VERCEL_URL: process.env.VERCEL_URL,
     PORT: process.env.PORT,
     DATABASE_URL: process.env.DATABASE_URL,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    APP_DOMAIN: process.env.APP_DOMAIN,
+    NEXT_PUBLIC_APP_DOMAIN: process.env.NEXT_PUBLIC_APP_DOMAIN,
   },
   skipValidation:
     !!process.env.CI ||
