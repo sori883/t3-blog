@@ -9,6 +9,8 @@ import { TocRender } from "~/components/elements/markdown";
 
 // TODO:delete
 import {test} from "./test";
+// TODO:see
+// https://tailwindcss.com/docs/typography-plugin#customizing-the-css
 
 export async function PostContent(props: {
   slug: string

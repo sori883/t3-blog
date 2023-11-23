@@ -1,9 +1,12 @@
+import { Suspense } from "react";
 import { CategorySidebarList } from "~/components/category";
 
 export const Sidebar= () => {
   return (
     <div className="bg-white p-2">
-      <CategorySidebarList />
+      <Suspense>
+        <CategorySidebarList />
+      </Suspense>
     </div>
 );
 }
