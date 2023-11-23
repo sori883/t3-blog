@@ -13,7 +13,11 @@ export default {
   schema: "./schema",
   driver: "mysql2",
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL,
+    // @see https://orm.drizzle.team/kit-docs/config-reference#dbcredentials
+    // ????????
+    // エラー出てるけど、connectionStringでは動かない
+    uri: process.env.DATABASE_URL,
   },
   tablesFilter: ["t3-blog_*"],
 } satisfies Config;
+  

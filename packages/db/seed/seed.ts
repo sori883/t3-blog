@@ -99,8 +99,8 @@ async function main() {
   const selectTag: Tag[] = await db.select().from(schema.tags).limit(1);
 
   const postsToTags: InsertPostsToTags[] = selectPost.map((item) => ({
-    postId: item.id,
-    tagId: selectTag[0]!.id,
+    postSlug: item.slug,
+    tagSlug: selectTag[0]!.slug,
   }));
 
   const postsToTagsInserted = await db

@@ -1,7 +1,6 @@
 import { relations, sql } from "drizzle-orm";
 import {
   boolean,
-  int,
   primaryKey,
   serial,
   text,
@@ -91,27 +90,28 @@ export const tagsRelations = relations(tags, ({ one, many }) => ({
 export const postsToTags = mySqlTable(
   "posts_to_tags",
   {
-    postId: int("post_id").notNull(),
-    tagId: int("tags_id").notNull(),
+    postSlug: varchar("post_slug", { length: 50 }).notNull(),
+    tagSlug: varchar("tag_slug", { length: 50 }).notNull(),
     createdAt: timestamp("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   updatedAt: timestamp("updatedAt").onUpdateNow(),
   },
   (t) => ({
-    pk: primaryKey(t.postId, t.tagId),
+    // @see https://orm.drizzle.team/docs/indexes-constraints#primary-key
+    pk: primaryKey({ columns: [t.postSlug, t.tagSlug]}),
   }),
 );
 
 // @see https://orm.drizzle.team/docs/rqb#foreign-keys
 export const postsToTagsRelations = relations(postsToTags, ({ one }) => ({
   post: one(posts, {
-    fields: [postsToTags.postId],
-    references: [posts.id],
+    fields: [postsToTags.tagSlug],
+    references: [posts.slug],
   }),
   tag: one(tags, {
-    fields: [postsToTags.tagId],
-    references: [tags.id],
+    fields: [postsToTags.tagSlug],
+    references: [tags.slug],
   }),
 }));
 
