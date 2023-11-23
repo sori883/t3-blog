@@ -11,7 +11,8 @@ export const Link: FC<ComponentPropsWithoutRef<'a'>> = ({ href, children, classN
       {children}
     </a>
       :
-      <NextLink href={href}
+      <NextLink
+        href={href}
         className={`a-link no-underline inline-flex items-center break-all ${className}`}
       >
         {children}

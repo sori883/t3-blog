@@ -4,7 +4,7 @@
 
 import * as cheerio from 'cheerio';
 
-interface Toc {
+export interface Toc {
   text: string;
   id: string;
   level: number;

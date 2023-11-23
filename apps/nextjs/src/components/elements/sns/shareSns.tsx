@@ -2,7 +2,7 @@ import {
   IconFacebook,
   IconLine,
   IconXTwitter
-} from "~/components/elements/sns";
+} from "~/components/elements/icons";
 import { Link } from "~/components/elements/link"
 import type { RouterOutputs } from "@acme/api";
 import {

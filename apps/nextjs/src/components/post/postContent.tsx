@@ -2,8 +2,10 @@ import { api } from "~/utils/server";
 import { notFound } from 'next/navigation'
 import { Image } from "~/components/elements/image"
 import { formatDate } from "~/utils/formatDate"
-import { MarkdownRenderer } from "~/components/elements/markdown";
+import { MarkdownRender } from "~/components/elements/markdown";
 import { ShareSns } from "~/components/elements/sns";
+import { markdownToHtml } from "~/markdown"
+import { TocRender } from "~/components/elements/markdown";
 
 // TODO:delete
 import {test} from "./test";
@@ -17,8 +19,9 @@ export async function PostContent(props: {
   if (post === undefined) {
     notFound()
   }
-
   const lastUpdate = post.updatedAt ?? post.createdAt
+  const html = markdownToHtml(test)
+
 
   return (
     <div>
@@ -30,12 +33,18 @@ export async function PostContent(props: {
       <figure className="relative w-full h-80 mb-10">
         <Image src={post.thumbnailUrl} alt="アイキャッチ" />
       </figure>
-      <div className="mb-10">
+      <div className="mb-5">
         <ShareSns post={post} />
       </div>
+      <details className="ui_collapse bg-base-200 mb-5 prose prose-md prose-a:font-normal max-w-full">
+          <summary className="ui_collapse-title font-bold">この記事の目次 ▼</summary>
+          <div className="ui_collapse-content"> 
+          <TocRender html={html} />
+          </div>
+        </details>
       <article className="prose lg:prose-xl">
         {post.entry}
-      <MarkdownRenderer text={test} />
+      <MarkdownRender html={html} />
       </article>
     </div>
   );
