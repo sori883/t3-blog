@@ -16,6 +16,7 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     APP_DOMAIN: z.string(),
+    CONTACT_URL: z.string().url(),
   },
   /**
    * Specify your client-side environment variables schema here.
@@ -33,6 +34,7 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     APP_DOMAIN: process.env.APP_DOMAIN,
     NEXT_PUBLIC_APP_DOMAIN: process.env.NEXT_PUBLIC_APP_DOMAIN,
+    CONTACT_URL: process.env.CONTACT_URL
   },
   skipValidation:
     !!process.env.CI ||

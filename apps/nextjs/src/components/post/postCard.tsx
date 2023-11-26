@@ -15,7 +15,7 @@ export function PostCard(props: {
               {props.post.title}
             </h2>
             <p>{formatDate(props.post.createdAt)}</p>
-            <div className="ui_card-actions justify-end">
+            <div className="ui_card-actions justify-end">w
               {
                 props.post.category ? 
                 <div className="ui_badge ui_badge-outline">{props.post.category.title}</div> 
