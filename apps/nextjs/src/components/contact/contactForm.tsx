@@ -38,7 +38,7 @@ export function ContactForm() {
   return (
     <div>
       <form
-        className="flex w-full max-w-2xl flex-col"
+        className="flex w-full flex-col"
         onSubmit={handleSubmit(onSubmit)}
       >
       <label htmlFor="email">メールアドレス*</label>
