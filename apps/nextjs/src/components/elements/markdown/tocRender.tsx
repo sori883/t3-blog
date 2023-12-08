@@ -1,5 +1,5 @@
-import type { Toc } from "~/markdown/utils";
-import { parseToc } from "~/markdown/utils";
+import type { Toc } from "@acme/markdown";
+import { parseToc } from "@acme/markdown";
 
 export function TocRender(props: {
   html: string;

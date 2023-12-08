@@ -1,16 +1,14 @@
+import { markdownToHtml } from "@acme/markdown"
 import { api } from "~/utils/server";
 import { notFound } from 'next/navigation'
 import { Image } from "~/components/elements/image"
 import { formatDate } from "~/utils/formatDate"
 import { MarkdownRender } from "~/components/elements/markdown";
 import { ShareSns } from "~/components/elements/sns";
-import { markdownToHtml } from "~/markdown"
 import { TocRender } from "~/components/elements/markdown";
 
 // TODO:delete
 import {test} from "./test";
-// TODO:see
-// https://tailwindcss.com/docs/typography-plugin#customizing-the-css
 
 export async function PostContent(props: {
   slug: string
@@ -22,7 +20,7 @@ export async function PostContent(props: {
     notFound()
   }
   const lastUpdate = post.updatedAt ?? post.createdAt
-  const html = markdownToHtml(test)
+  const html = markdownToHtml(test, {embedOrigin: "http://localhost:3000"})
 
 
   return (
@@ -44,7 +42,7 @@ export async function PostContent(props: {
           <TocRender html={html} />
           </div>
         </details>
-      <article className="prose lg:prose-xl">
+      <article>
         {post.entry}
       <MarkdownRender html={html} />
       </article>

@@ -1,9 +1,9 @@
+import "@acme/markdown/css/index.scss"
+
 export function MarkdownRender(props: {
   html: string;
 }) {
     return (
-      <div>
-        <div dangerouslySetInnerHTML={{ __html: props.html }} />
-      </div>
+      <div className="znc" dangerouslySetInnerHTML={{ __html: props.html }} />
     );
 }

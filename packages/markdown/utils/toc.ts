@@ -1,6 +1,6 @@
-/*
-  https://github.com/zenn-dev/zenn-editor/blob/canary/packages/zenn-markdown-html/src/utils/toc.ts
-*/
+/**
+ * forked from https://github.com/zenn-dev/zenn-editor
+ */
 
 import * as cheerio from 'cheerio';
 

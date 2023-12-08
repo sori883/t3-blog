@@ -19,6 +19,11 @@ export const pagesPath = {
   "contact": {
     $url: (url?: { hash?: string }) => ({ pathname: '/contact' as const, hash: url?.hash, path: `/contact${buildSuffix(url)}` })
   },
+  "embed": {
+    _type: (type: string | number) => ({
+      $url: (url?: { hash?: string }) => ({ pathname: '/embed/[type]' as const, query: { type }, hash: url?.hash, path: `/embed/${type}${buildSuffix(url)}` })
+    })
+  },
   "privacypolicy": {
     $url: (url?: { hash?: string }) => ({ pathname: '/privacypolicy' as const, hash: url?.hash, path: `/privacypolicy${buildSuffix(url)}` })
   },

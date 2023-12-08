@@ -1,3 +1,6 @@
+/**
+ * forked from https://github.com/zenn-dev/zenn-editor
+ */
 import sanitizeHtml from 'sanitize-html';
 
 const tags = [
