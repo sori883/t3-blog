@@ -24,11 +24,11 @@ export function EmbedCard(props: {
       <div className="w-full h-[125px] border-2 flex bg-white">
       <div className="flex-1 space-y-5 py-5 px-6">
         <div className="h-2 text-xl font-bold">
-          {props.ogp.title}
+          {props.ogp.title ? props.ogp.title : "タイトル未設定"}
         </div>
         <div className="space-y-3">
             <div className="col-span-2 text-sm text-slate-500">
-              {props.ogp.description}
+              {props.ogp.description ? props.ogp.description : ""}
             </div>
           <div className="text-xs">
             {props.ogp.siteName ? props.ogp.siteName : props.ogp.url}

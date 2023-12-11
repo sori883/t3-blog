@@ -84,6 +84,7 @@ async function main() {
       isPublish: true,
       description: `これはポスト${i}のdiscription`,
       thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
+      githubUrl: "https://github.com/sori883/blogContent/blob/main/articles/0002.md",
       categorySlug: cate[0]!.slug,
       userId: user[0]!.id,
     },)

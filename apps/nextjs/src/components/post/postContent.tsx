@@ -6,6 +6,7 @@ import { formatDate } from "~/utils/formatDate"
 import { MarkdownRender } from "~/components/elements/markdown";
 import { ShareSns } from "~/components/elements/sns";
 import { TocRender } from "~/components/elements/markdown";
+import { EditReqButton } from "~/components/post"
 
 // TODO:delete
 import {test} from "./test";
@@ -44,8 +45,12 @@ export async function PostContent(props: {
         </details>
       <article>
         {post.entry}
+        {post.githubUrl}
       <MarkdownRender html={html} />
       </article>
+      <div className="mt-5">
+      <EditReqButton url={post.githubUrl} />
+      </div>
     </div>
   );
 }

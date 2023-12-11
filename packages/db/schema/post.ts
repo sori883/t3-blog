@@ -23,6 +23,7 @@ export const posts = mySqlTable(
     categorySlug: varchar("category_slug", { length: 50 }).notNull(),
     description: varchar("description", { length: 255 }).notNull(),
     thumbnailUrl: varchar("thumbnail_url", { length: 255 }).notNull(),
+    githubUrl: varchar("github_url", { length: 255 }).notNull(),
     userId: varchar("user_id", { length: 255 }).notNull(),
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
