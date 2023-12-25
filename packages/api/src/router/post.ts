@@ -2,9 +2,15 @@ import { z } from "zod";
 
 import { union, desc, eq, ne, schema, and, sql } from "@acme/db";
 
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure, contentAppProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
+  publicPing: contentAppProcedure
+  .query(() => {
+    return {
+      greeting: `Hello this is public ping`,
+    };
+  }),
   /*
       トップページ用の記事を取得する
     */

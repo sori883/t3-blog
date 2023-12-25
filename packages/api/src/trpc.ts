@@ -59,10 +59,10 @@ export const createTRPCContext = async (opts: {
 
   return createInnerTRPCContext({
     session,
-  });
+  });         
 };
 
-/**
+/**   
  * 2. INITIALIZATION
  *
  * This is where the trpc api is initialized, connecting the context and

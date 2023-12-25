@@ -14,8 +14,6 @@ export default {
   driver: "mysql2",
   dbCredentials: {
     // @see https://orm.drizzle.team/kit-docs/config-reference#dbcredentials
-    // ????????
-    // エラー出てるけど、connectionStringでは動かない
     uri: process.env.DATABASE_URL,
   },
   tablesFilter: ["t3-blog_*"],
