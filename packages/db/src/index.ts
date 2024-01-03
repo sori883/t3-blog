@@ -9,6 +9,19 @@ export const schema = { ...auth, ...post };
 export { mySqlTable as tableCreator } from "./schema/_table";
 
 export * from "drizzle-orm";
+export type * from "./schema/auth";
+export type * from "./schema/post";
+
+// export * from "drizzle-orm"だけではエクスポートされないので、
+// 個別にエクスポート
+export {
+  union,
+  unionAll,
+  intersect,
+  intersectAll,
+  except,
+  exceptAll,
+} from "drizzle-orm/mysql-core";
 
 const connection = connect({
   host: process.env.DB_HOST!,
