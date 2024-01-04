@@ -1,4 +1,3 @@
-import { db, schema } from "../src";
 import type {
   Category,
   InsertCategory,
@@ -9,6 +8,7 @@ import type {
   Tag,
   User,
 } from "../src";
+import { db, schema } from "../src";
 
 async function main() {
   // ユーザを取得する
@@ -75,8 +75,8 @@ async function main() {
   */
   const cate: Category[] = await db.select().from(schema.categories).limit(1);
 
-  const posts: InsertPost[] =[]
-  for (let i = 1; i < 100; i++){
+  const posts: InsertPost[] = [];
+  for (let i = 1; i < 100; i++) {
     posts.push({
       title: `ポスト${i}`,
       slug: `post${i}`,
@@ -84,10 +84,11 @@ async function main() {
       isPublish: true,
       description: `これはポスト${i}のdiscription`,
       thumbnailUrl: "https://img.sori883.dev/images/0001/kitune500.png",
-      githubUrl: "https://github.com/sori883/blogContent/blob/main/articles/0002.md",
+      githubUrl:
+        "https://github.com/sori883/blogContent/blob/main/articles/0002.md",
       categorySlug: cate[0]!.slug,
       userId: user[0]!.id,
-    },)
+    });
   }
 
   const postsInserted = await db.insert(schema.posts).values(posts);

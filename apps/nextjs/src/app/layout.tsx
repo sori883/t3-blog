@@ -51,9 +51,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           GeistMono.variable,
         )}
       >
-      <TRPCReactProvider headersPromise={getHeaders()}>
-        {props.children}
-      </TRPCReactProvider>
+        <TRPCReactProvider headersPromise={getHeaders()}>
+          {props.children}
+        </TRPCReactProvider>
       </body>
     </html>
   );

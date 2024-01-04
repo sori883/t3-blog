@@ -1,8 +1,8 @@
 /**
  * forked from https://github.com/zenn-dev/zenn-editor
  */
-import { escapeHtml } from 'markdown-it/lib/common/utils';
-import type Token from 'markdown-it/lib/token';
+import type Token from "markdown-it/lib/token";
+import { escapeHtml } from "markdown-it/lib/common/utils";
 
 // containers
 // ref: https://github.com/markdown-it/markdown-it-container
@@ -16,17 +16,17 @@ export const containerDetailsOptions = {
   },
   render: function (tokens: Token[], idx: number) {
     const m = tokens[idx]!.info.trim().match(/^details\s+(.*)$/);
-    const summary = m?.[1] ?? '';
+    const summary = m?.[1] ?? "";
     if (tokens[idx]!.nesting === 1) {
       // opening tag
       return (
-        '<details><summary>' +
+        "<details><summary>" +
         escapeHtml(summary) +
         '</summary><div class="details-content">'
       );
     } else {
       // closing tag
-      return '</div></details>\n';
+      return "</div></details>\n";
     }
   },
 };
@@ -41,7 +41,7 @@ export const containerMessageOptions = {
   },
   render: function (tokens: Token[], idx: number) {
     const m = tokens[idx]!.info.trim().match(msgClassRegex);
-    const messageName = m?.[1] === 'alert' ? 'alert' : 'message';
+    const messageName = m?.[1] === "alert" ? "alert" : "message";
 
     if (tokens[idx]!.nesting === 1) {
       // opening tag

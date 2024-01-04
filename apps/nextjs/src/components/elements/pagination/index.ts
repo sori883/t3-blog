@@ -1,2 +1,2 @@
-export * from "./pagination"
-export * from "./pageUtil"
+export * from "./pagination";
+export * from "./pageUtil";

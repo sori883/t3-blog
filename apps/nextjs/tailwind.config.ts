@@ -1,9 +1,8 @@
+import type { Config } from "tailwindcss";
+import daisyUIThemes from "daisyui/src/theming/themes";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
-import type { Config } from "tailwindcss";
-
 import baseConfig from "@acme/tailwind-config";
-import daisyUIThemes from 'daisyui/src/theming/themes';
 
 export default {
   content: ["./src/**/*.{ts,tsx}"],
@@ -17,7 +16,7 @@ export default {
           info: "rgb(186 230 253)",
           success: "rgb(217 249 157)",
           warning: "rgb(254 240 138)",
-          error: 'rgb(254 202 202)',
+          error: "rgb(254 202 202)",
         },
       },
     ],
