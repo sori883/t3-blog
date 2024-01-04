@@ -1,1 +1,1 @@
-export { GET } from "@acme/markdown"
+export { GET } from "@acme/markdown";

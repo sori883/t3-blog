@@ -5,7 +5,7 @@
 export function isValidHttpUrl(str: string) {
   try {
     const url = new URL(str);
-    return url.protocol === 'http:' || url.protocol === 'https:';
+    return url.protocol === "http:" || url.protocol === "https:";
   } catch (_) {
     return false;
   }
@@ -13,7 +13,7 @@ export function isValidHttpUrl(str: string) {
 
 export function isTweetUrl(url: string): boolean {
   return /^https:\/\/(twitter|x)\.com\/[a-zA-Z0-9_-]+\/status\/[a-zA-Z0-9?=&\-_]+$/.test(
-    url
+    url,
   );
 }
 
@@ -23,13 +23,13 @@ export function isStackblitzUrl(url: string): boolean {
 
 export function isCodesandboxUrl(url: string): boolean {
   return /^https:\/\/codesandbox\.io\/embed\/[a-zA-Z0-9\-_/.@?&=%,]+$/.test(
-    url
+    url,
   );
 }
 
 export function isCodepenUrl(url: string): boolean {
   return /^https:\/\/codepen\.io\/[a-zA-Z0-9\-_/@]+\/pen\/[a-zA-Z0-9\-_/.@?&=%,]+$/.test(
-    url
+    url,
   );
 }
 
@@ -51,19 +51,19 @@ const YOUTUBE_VIDEO_ID_LENGTH = 11;
  * youtube の URL から videoId と開始位置の秒数を取得する
  */
 export function extractYoutubeVideoParameters(
-  youtubeUrl: string
+  youtubeUrl: string,
 ): { videoId: string; start?: string } | undefined {
   if (!isYoutubeUrl(youtubeUrl)) return void 0;
 
   const url = new URL(youtubeUrl);
-  const params = new URLSearchParams(url.search || '');
+  const params = new URLSearchParams(url.search || "");
 
   // https://youtu.be/Hoge の "HogeHoge" の部分または、
   // https://www.youtube.com/watch?v=Hoge の "Hoge" の部分を値とする
-  const videoId = params.get('v') ?? url.pathname.split('/')[1];
+  const videoId = params.get("v") ?? url.pathname.split("/")[1];
 
   // https://www.youtube.com/watch?v=Hoge&t=100s の "100" の部分を値とする
-  const start = params.get('t')?.replace('s', '');
+  const start = params.get("t")?.replace("s", "");
 
   if (videoId?.length !== YOUTUBE_VIDEO_ID_LENGTH) return void 0;
 
@@ -84,6 +84,6 @@ export function isBlueprintUEUrl(url: string): boolean {
  */
 export function isFigmaUrl(url: string): boolean {
   return /^https:\/\/([\w.-]+\.)?figma.com\/(file|proto)\/([0-9a-zA-Z]{22,128})(?:\/[\w-?=&%]+)?$/.test(
-    url
+    url,
   );
 }

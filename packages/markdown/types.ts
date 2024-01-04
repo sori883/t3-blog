@@ -1,7 +1,7 @@
 /**
  * forked from https://github.com/zenn-dev/zenn-editor
  */
-import type { EmbedGeneratorList } from './embed';
+import type { EmbedGeneratorList } from "./embed";
 
 /**
  * Markdown 変換時のオプション型

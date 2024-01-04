@@ -1,5 +1,5 @@
-import { api } from "~/utils/server";
 import { Link } from "~/components/elements/link";
+import { api } from "~/trpc/server";
 
 /*
 @TODO
@@ -14,10 +14,10 @@ export async function CategorySidebarList() {
   if (categories.length === 0) {
     return (
       <div className="relative flex w-full flex-col gap-4">
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
-        <p className="text-2xl font-bold text-white">No category yet</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
+          <p className="text-2xl font-bold text-white">No category yet</p>
+        </div>
       </div>
-    </div>
     );
   }
 
@@ -26,9 +26,7 @@ export async function CategorySidebarList() {
       <li className="ui_menu-title text-lg">Category</li>
       {categories.map((c) => (
         <li key={c.id}>
-          <Link href={`/${c.slug}/`}>
-            {c.title}
-          </Link>
+          <Link href={`/${c.slug}/`}>{c.title}</Link>
         </li>
       ))}
     </ul>

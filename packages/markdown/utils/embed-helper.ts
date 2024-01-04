@@ -1,19 +1,18 @@
 /**
  * forked from https://github.com/zenn-dev/zenn-editor
  */
-import type { MarkdownOptions } from '../types';
-import type { EmbedServerType, EmbedType } from '../embed';
-import { embedKeys } from '../embed';
-import { isTweetUrl, isYoutubeUrl } from './url-matcher';
+import type { EmbedServerType, EmbedType } from "../embed";
+import type { MarkdownOptions } from "../types";
+import { embedKeys } from "../embed";
+import { isTweetUrl, isYoutubeUrl } from "./url-matcher";
 
 /** 渡された文字列をサニタイズする */
 export function sanitizeEmbedToken(str: string): string {
-  return str.replace(/"/g, '%22');
+  return str.replace(/"/g, "%22");
 }
 
 /** `EmbedType`か判定する */
 export function isEmbedType(type: unknown): type is EmbedType {
-
   // eslint-disable-next-line
   return embedKeys.includes(type as any);
 }
@@ -21,16 +20,16 @@ export function isEmbedType(type: unknown): type is EmbedType {
 /** 渡された埋め込みURLまたはTokenを検証する */
 export const validateEmbedToken = (
   str: string,
-  type?: EmbedType
+  type?: EmbedType,
 ): { isValid: boolean; message: string } => {
   /** 検証から除外する埋め込みの種別 */
-  const ignoredEmbedType: EmbedType[] = ['card'];
+  const ignoredEmbedType: EmbedType[] = ["card"];
   /** 埋め込みURLまたはTokenの最大文字数( excludeEmbedTypeは除く ) */
   const MAX_EMBED_TOKEN_LENGTH = 300;
 
   // eslint-disable-next-line
   if (ignoredEmbedType.includes(type as any)) {
-    return { isValid: true, message: '' };
+    return { isValid: true, message: "" };
   }
 
   if (str.length > MAX_EMBED_TOKEN_LENGTH) {
@@ -40,14 +39,14 @@ export const validateEmbedToken = (
     };
   }
 
-  return { isValid: true, message: '' };
+  return { isValid: true, message: "" };
 };
 
 /** Embedサーバーを使った埋め込み要素の文字列を生成する */
 export function generateEmbedServerIframe(
   type: EmbedServerType,
   src: string,
-  embedOrigin: string
+  embedOrigin: string,
 ): string {
   const origin = (() => {
     try {
@@ -59,8 +58,8 @@ export function generateEmbedServerIframe(
 
   // 埋め込みサーバーの origin が設定されてなければ空文字列を返す
   if (!origin) {
-    console.warn('The embedOrigin option not set');
-    return '';
+    console.warn("The embedOrigin option not set");
+    return "";
   }
 
   // ユーザーからの入力値が引数として渡されたときのために念のためencodeする
@@ -76,7 +75,7 @@ export function generateEmbedServerIframe(
 export const generateEmbedHTML = (
   type: EmbedType,
   str: string,
-  options?: MarkdownOptions
+  options?: MarkdownOptions,
 ): string => {
   const { isValid, message } = validateEmbedToken(str, type);
   const generator = options?.customEmbed?.[type];
@@ -87,7 +86,7 @@ export const generateEmbedHTML = (
 /** Linkifyな埋め込み要素のHTML生成する */
 export const generateLinkifyEmbedHTML = (
   url: string,
-  options?: MarkdownOptions
+  options?: MarkdownOptions,
 ): string => {
   const { isValid, message: msg } = validateEmbedToken(url);
   const generators = options?.customEmbed;

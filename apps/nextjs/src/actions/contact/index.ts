@@ -1,1 +1,1 @@
-export * from "./sendContactAction"
+export * from "./sendContactAction";

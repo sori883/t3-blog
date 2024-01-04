@@ -1,6 +1,6 @@
-import type { RouterOutputs } from "~/utils/shared";
-import { Link } from "~/components/elements/link";
+import type { RouterOutputs } from "~/trpc/shared";
 import { IconGithub } from "~/components/elements/icons";
+import { Link } from "~/components/elements/link";
 
 export function EditReqButton(props: {
   url: RouterOutputs["post"]["index"]["posts"][number]["githubUrl"];

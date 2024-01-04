@@ -2,36 +2,36 @@
   "name": "@acme/db",
   "version": "0.1.0",
   "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint .",
-    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
-    "dev": "drizzle-kit studio",
     "push": "drizzle-kit push:mysql",
-    "seed": "pnpm with-env node -r esbuild-register ./seed/seed.ts",
-    "studio": "drizzle-kit studio",
+    "dev": "drizzle-kit studio",
+    "seed": "pnpm with-env tsx ./seed/seed.ts",
     "with-env": "dotenv -e ../../.env --",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@planetscale/database": "^1.11.0",
-    "drizzle-orm": "^0.29.0",
-    "esbuild": "^0.19.5",
-    "esbuild-register": "^3.5.0",
-    "mysql2": "^3.6.2"
+    "@planetscale/database": "^1.13.0",
+    "drizzle-orm": "^0.29.3"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@acme/eslint-config": "workspace:^0.2.0",
+    "@acme/prettier-config": "workspace:^0.1.0",
+    "@acme/tsconfig": "workspace:^0.1.0",
     "dotenv-cli": "^7.3.0",
-    "drizzle-kit": "^0.20.6",
-    "eslint": "^8.51.0",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "drizzle-kit": "^0.20.9",
+    "eslint": "^8.56.0",
+    "mysql2": "^3.6.5",
+    "prettier": "^3.1.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   },
   "eslintConfig": {
     "root": true,

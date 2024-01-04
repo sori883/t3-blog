@@ -1,7 +1,7 @@
 /**
  * forked from https://github.com/zenn-dev/zenn-editor
  */
-import type MarkdownIt from 'markdown-it';
+import type MarkdownIt from "markdown-it";
 
 /**
  * Return case-sensitive matched br tag
@@ -23,13 +23,13 @@ function matchBR(state: any, start: number): string | null {
 export function mdBr(md: MarkdownIt): void {
   // Tokenize
   md.inline.ruler.before(
-    'emphasis',
-    'br',
+    "emphasis",
+    "br",
     // eslint-disable-next-line
     function tokenize(state: any, silent): boolean {
-          // eslint-disable-next-line
+      // eslint-disable-next-line
       const max = state.posMax;
-          // eslint-disable-next-line
+      // eslint-disable-next-line
       const start = state.pos;
 
       // don't run any pairs in validation mode
@@ -45,9 +45,9 @@ export function mdBr(md: MarkdownIt): void {
       // eslint-disable-next-line
       state.scanDelims(state.pos, true);
       // eslint-disable-next-line
-      const token = state.push('text', '', 0);
+      const token = state.push("text", "", 0);
       // eslint-disable-next-line
-      token.content = '<br>';
+      token.content = "<br>";
       // eslint-disable-next-line
       state.delimiters.push({
         // eslint-disable-next-line
@@ -67,11 +67,11 @@ export function mdBr(md: MarkdownIt): void {
       state.pos += br.length;
 
       return true;
-    }
+    },
   );
 
   // Walk through delimiter list and replace text tokens with tags
-  md.inline.ruler2.before('emphasis', 'br', function postProcess(state) {
+  md.inline.ruler2.before("emphasis", "br", function postProcess(state) {
     let i;
     let delim;
     let token;
@@ -80,16 +80,16 @@ export function mdBr(md: MarkdownIt): void {
 
     for (i = 0; i < max; i++) {
       delim = delimiters[i]!;
-      
-      const marker = delim.marker as number | '<br>';
 
-      if (marker === '<br>') {
+      const marker = delim.marker as number | "<br>";
+
+      if (marker === "<br>") {
         token = state.tokens[delim.token]!;
-        token.type = 'br_openclose';
-        token.tag = 'br';
+        token.type = "br_openclose";
+        token.tag = "br";
         token.nesting = 1;
-        token.markup = '<br>';
-        token.content = '';
+        token.markup = "<br>";
+        token.content = "";
       }
     }
 
