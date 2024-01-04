@@ -22,12 +22,15 @@ export const env = createEnv({
     DB_NAME: z.string(),
     DB_PASSWORD: z.string(),
     DB_USERNAME: z.string(),
+    CONTACT_URL: z.string().url(),
+    APP_URL: z.string(),
   },
   /**
    * Specify your client-side environment variables schema here.
    * For them to be exposed to the client, prefix them with `NEXT_PUBLIC_`.
    */
   client: {
+    NEXT_PUBLIC_APP_URL: z.string(),
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
   },
   /**
@@ -40,7 +43,9 @@ export const env = createEnv({
     DB_USERNAME: process.env.DB_USERNAME,
     PORT: process.env.PORT,
     VERCEL_URL: process.env.VERCEL_URL,
-
+    CONTACT_URL: process.env.CONTACT_URL,
+    APP_URL: process.env.APP_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   skipValidation:

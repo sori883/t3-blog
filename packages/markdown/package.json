@@ -3,11 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./css": "./css/index.scss"
   },
-  "files": [
-    "./css/index.scss"
-  ],
   "types": "./index.ts",
   "private": true,
   "license": "MIT",

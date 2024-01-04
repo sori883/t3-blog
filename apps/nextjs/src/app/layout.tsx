@@ -5,13 +5,11 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@acme/ui";
-import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
-import { Toaster } from "@acme/ui/toast";
 
 import { env } from "~/env";
 import { TRPCReactProvider } from "~/trpc/react";
 
-import "~/app/globals.css";
+import "~/styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -45,7 +43,7 @@ const getHeaders = cache(async () => headers());
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ja" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-background font-sans text-foreground antialiased",
@@ -53,15 +51,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           GeistMono.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TRPCReactProvider headersPromise={getHeaders()}>
-            {props.children}
-          </TRPCReactProvider>
-          <div className="absolute bottom-4 right-4">
-            <ThemeToggle />
-          </div>
-          <Toaster />
-        </ThemeProvider>
+      <TRPCReactProvider headersPromise={getHeaders()}>
+        {props.children}
+      </TRPCReactProvider>
       </body>
     </html>
   );

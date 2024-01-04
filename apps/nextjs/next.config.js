@@ -11,10 +11,12 @@ const config = {
     "@acme/api",
     "@acme/auth",
     "@acme/db",
-    "@acme/ui",
     "@acme/validators",
   ],
-
+  images: {
+    domains: ["img.sori883.dev"],
+    disableStaticImages: true,
+  },
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },

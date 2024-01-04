@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "push": "drizzle-kit push:mysql",
     "studio": "drizzle-kit studio",
-    "seed": "pnpm with-env node -r esbuild-register ./src/seed/seed.ts",
+    "seed": "pnpm with-env node -r esbuild-register ./seed/seed.ts",
+    "seeder": "pnpm with-env ts-node ./seed/seed.ts",
     "with-env": "dotenv -e ../../.env --",
     "typecheck": "tsc --noEmit"
   },
@@ -32,6 +33,7 @@
     "eslint": "^8.56.0",
     "mysql2": "^3.6.5",
     "prettier": "^3.1.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "eslintConfig": {
