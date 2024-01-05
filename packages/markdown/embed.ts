@@ -1,44 +1,41 @@
 /**
  * forked from https://github.com/zenn-dev/zenn-editor
  */
-import type { MarkdownOptions } from './types';
+import { escapeHtml } from "markdown-it/lib/common/utils";
 
-import { escapeHtml } from 'markdown-it/lib/common/utils';
-import { extractYoutubeVideoParameters } from './utils/url-matcher';
+import type { MarkdownOptions } from "./types";
 import {
-  sanitizeEmbedToken,
   generateEmbedServerIframe,
-} from './utils/embed-helper';
+  sanitizeEmbedToken,
+} from "./utils/embed-helper";
 import {
-  isTweetUrl,
-  isStackblitzUrl,
-  isCodesandboxUrl,
-  isCodepenUrl,
-  isJsfiddleUrl,
+  extractYoutubeVideoParameters,
   isBlueprintUEUrl,
+  isCodepenUrl,
+  isCodesandboxUrl,
   isFigmaUrl,
+  isJsfiddleUrl,
+  isStackblitzUrl,
+  isTweetUrl,
   isValidHttpUrl,
-} from './utils/url-matcher';
+} from "./utils/url-matcher";
 
 /* 埋め込み要素の種別 */
 export type EmbedType =
-  | 'youtube'
-  | 'slideshare'
-  | 'speakerdeck'
-  | 'jsfiddle'
-  | 'codepen'
-  | 'codesandbox'
-  | 'stackblitz'
-  | 'tweet'
-  | 'blueprintue'
-  | 'figma'
-  | 'card';
+  | "youtube"
+  | "slideshare"
+  | "speakerdeck"
+  | "jsfiddle"
+  | "codepen"
+  | "codesandbox"
+  | "stackblitz"
+  | "tweet"
+  | "blueprintue"
+  | "figma"
+  | "card";
 
 /** embedサーバーで表示する埋め込み要素の種別 */
-export type EmbedServerType = Extract<
-  EmbedType,
-  'tweet' | 'card'
->;
+export type EmbedServerType = Extract<EmbedType, "tweet" | "card">;
 
 /** 埋め込み要素のHTMLを生成する関数 */
 export type EmbedGenerator = (str: string, options?: MarkdownOptions) => string;
@@ -50,83 +47,83 @@ export const embedGenerators: Readonly<EmbedGeneratorList> = {
     const params = extractYoutubeVideoParameters(str) ?? { videoId: str };
 
     if (!params.videoId.match(/^[a-zA-Z0-9_-]+$/)) {
-      return 'YouTubeのvideoIDが不正です';
+      return "YouTubeのvideoIDが不正です";
     }
 
     const escapedVideoId = escapeHtml(params.videoId);
     const time = Math.min(Number(params.start ?? 0), 48 * 60 * 60); // 48時間以内
-    const startQuery = time ? `?start=${time}` : '';
+    const startQuery = time ? `?start=${time}` : "";
 
     return `<span class="embed-block embed-youtube"><iframe src="https://www.youtube-nocookie.com/embed/${escapedVideoId}${startQuery}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></span>`;
   },
   slideshare(key) {
     if (!key?.match(/^[a-zA-Z0-9_-]+$/)) {
-      return 'Slide Shareのkeyが不正です';
+      return "Slide Shareのkeyが不正です";
     }
     return `<span class="embed-block embed-slideshare"><iframe src="https://www.slideshare.net/slideshow/embed_code/key/${escapeHtml(
-      key
+      key,
     )}" scrolling="no" allowfullscreen loading="lazy"></iframe></span>`;
   },
   speakerdeck(key) {
     if (!key?.match(/^[a-zA-Z0-9_-]+$/)) {
-      return 'Speaker Deckのkeyが不正です';
+      return "Speaker Deckのkeyが不正です";
     }
     return `<span class="embed-block embed-speakerdeck"><iframe src="https://speakerdeck.com/player/${escapeHtml(
-      key
+      key,
     )}" scrolling="no" allowfullscreen allow="encrypted-media" loading="lazy"></iframe></span>`;
   },
   jsfiddle(str) {
     if (!isJsfiddleUrl(str)) {
-      return 'jsfiddleのURLが不正です';
+      return "jsfiddleのURLが不正です";
     }
     // URLを~/embedded/とする
     // ※ すでにembeddedもしくはembedが含まれるURLが入力されている場合は、そのままURLを使用する。
     let url = str;
-    if (!url.includes('embed')) {
-      url = url.endsWith('/') ? `${url}embedded/` : `${url}/embedded/`;
+    if (!url.includes("embed")) {
+      url = url.endsWith("/") ? `${url}embedded/` : `${url}/embedded/`;
     }
     return `<span class="embed-block embed-jsfiddle"><iframe src="${sanitizeEmbedToken(
-      url
+      url,
     )}" scrolling="no" frameborder="no" loading="lazy"></iframe></span>`;
   },
   codepen(str) {
     if (!isCodepenUrl(str)) {
-      return 'CodePenのURLが不正です';
+      return "CodePenのURLが不正です";
     }
-    const url = new URL(str.replace('/pen/', '/embed/'));
-    url.searchParams.set('embed-version', '2');
+    const url = new URL(str.replace("/pen/", "/embed/"));
+    url.searchParams.set("embed-version", "2");
     return `<span class="embed-block embed-codepen"><iframe src="${sanitizeEmbedToken(
-      url.toString()
+      url.toString(),
     )}" scrolling="no" frameborder="no" loading="lazy"></iframe></span>`;
   },
   codesandbox(str) {
     if (!isCodesandboxUrl(str)) {
-      return '「https://codesandbox.io/embed/」から始まる正しいURLを入力してください';
+      return "「https://codesandbox.io/embed/」から始まる正しいURLを入力してください";
     }
     return `<span class="embed-block embed-codesandbox"><iframe src="${sanitizeEmbedToken(
-      str
+      str,
     )}" style="width:100%;height:500px;border:none;overflow:hidden;" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" loading="lazy" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe></span>`;
   },
   stackblitz(str) {
     if (!isStackblitzUrl(str)) {
-      return 'StackBlitzのembed用のURLを指定してください';
+      return "StackBlitzのembed用のURLを指定してください";
     }
     return `<span class="embed-block embed-stackblitz"><iframe src="${sanitizeEmbedToken(
-      str
+      str,
     )}" scrolling="no" frameborder="no" loading="lazy"></iframe></span>`;
   },
   blueprintue(str) {
     if (!isBlueprintUEUrl(str))
-      return '「https://blueprintue.com/render/」から始まる正しいURLを指定してください';
+      return "「https://blueprintue.com/render/」から始まる正しいURLを指定してください";
     return `<span class="embed-block embed-blueprintue"><iframe src="${sanitizeEmbedToken(
-      str
+      str,
     )}" width="100%" style="aspect-ratio: 16/9" scrolling="no" frameborder="no" loading="lazy" allowfullscreen></iframe></span>`;
   },
   figma(str: string) {
     if (!isFigmaUrl(str))
-      return 'ファイルまたはプロトタイプのFigma URLを指定してください';
+      return "ファイルまたはプロトタイプのFigma URLを指定してください";
     return `<span class="embed-block embed-figma"><iframe src="https://www.figma.com/embed?embed_host=zenn&url=${sanitizeEmbedToken(
-      str
+      str,
     )}" width="100%" style="aspect-ratio: 16/9" scrolling="no" frameborder="no" loading="lazy" allowfullscreen></iframe></span>`;
   },
 
@@ -135,16 +132,16 @@ export const embedGenerators: Readonly<EmbedGeneratorList> = {
   // なければデフォルトの挙動(リンクの表示など)を行います。
 
   card(str, options) {
-    if (!isValidHttpUrl(str)) return 'URLが不正です';
+    if (!isValidHttpUrl(str)) return "URLが不正です";
     if (options?.embedOrigin)
-      return generateEmbedServerIframe('card', str, options.embedOrigin);
+      return generateEmbedServerIframe("card", str, options.embedOrigin);
 
     return `<a href="${str}" rel="noreferrer noopener nofollow" target="_blank">${str}</a>`;
   },
   tweet(str, options) {
-    if (!isTweetUrl(str)) return 'ツイートページのURLを指定してください';
+    if (!isTweetUrl(str)) return "ツイートページのURLを指定してください";
     if (options?.embedOrigin)
-      return generateEmbedServerIframe('tweet', str, options.embedOrigin);
+      return generateEmbedServerIframe("tweet", str, options.embedOrigin);
 
     return `<a href="${str}" rel="noreferrer noopener nofollow" target="_blank">${str}</a>`;
   },

@@ -1,2 +1,2 @@
-export * from "./markdownRender"
-export * from "./tocRender"
+export * from "./markdownRender";
+export * from "./tocRender";

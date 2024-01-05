@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { BaseLayout } from "~/components/layouts";
 
 export const metadata: Metadata = {
@@ -18,9 +19,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout(props: { children: React.ReactNode }) {
-  return (
-    <BaseLayout>
-      { props.children }
-    </BaseLayout>
-  );
+  return <BaseLayout>{props.children}</BaseLayout>;
 }

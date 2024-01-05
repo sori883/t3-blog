@@ -1,1 +1,1 @@
-export * from "./categorySidebarList"
+export * from "./categorySidebarList";
