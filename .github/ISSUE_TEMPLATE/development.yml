@@ -1,0 +1,24 @@
+# This template is heavily inspired by the Next.js's template:
+# See here: https://github.com/vercel/next.js/blob/canary/.github/ISSUE_TEMPLATE/3.feature_request.yml
+
+name: 🛠 Develop
+description: Create a development Task
+title: "dev: "
+labels: ["devlop "]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        開発する機能について、以下に記載する。
+  - type: textarea
+    attributes:
+      label: 開発する機能を記載
+      description: 概要と詳細を記載する
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 備考
+      description: 開発する機能について考慮する点や方針があれば記載する
+    validations:
+      required: false
