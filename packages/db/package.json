@@ -25,6 +25,7 @@
     "@acme/eslint-config": "workspace:^0.2.0",
     "@acme/prettier-config": "workspace:^0.1.0",
     "@acme/tsconfig": "workspace:^0.1.0",
+    "dotenv": "^16.3.1",
     "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.20.9",
     "eslint": "^8.56.0",
