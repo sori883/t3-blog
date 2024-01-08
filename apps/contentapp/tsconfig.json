@@ -2,10 +2,14 @@
   "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "module": "CommonJS",
-    "moduleResolution": "node"
+    "target": "es5",
+    "lib": ["es2015", "es2017"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "noEmit": false
   },
   "baseUrl": "./src",
-  "include": ["src"],
+  "include": ["src/"],
   "exclude": ["node_modules"]
 }

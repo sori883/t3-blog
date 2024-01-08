@@ -6,11 +6,12 @@
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "start": "probot run ./dist/index.js",
-    "dev_taihi": "tsc && probot run ./dist/index.js",
+    "start": "pnpm with-env probot run ./dist/index.js",
+    "dev": "tsc && pnpm with-env probot run ./dist/index.js",
     "clean": "git clean -xdf .next .turbo node_modules",
     "lint": "eslint .",
     "format": "prettier --check . --ignore-path ../../.gitignore",
+    "with-env": "dotenv -e ../../.env --",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -30,7 +31,21 @@
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "smee-client": "^2.0.0",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "os": [
+        "win32",
+        "darwin",
+        "current"
+      ],
+      "cpu": [
+        "x64",
+        "arm64"
+      ]
+    }
   },
   "eslintConfig": {
     "root": true,
