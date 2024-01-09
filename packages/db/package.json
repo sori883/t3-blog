@@ -12,7 +12,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "push": "drizzle-kit push:mysql",
-    "dev": "drizzle-kit studio --port 3100",
+    "dev": "drizzle-kit studio",
     "seed": "pnpm with-env tsx ./seed/seed.ts",
     "with-env": "dotenv -e ../../.env --",
     "typecheck": "tsc --noEmit"
