@@ -6,8 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "start": "pnpm with-env probot run ./dist/index.js",
-    "dev": "tsc && pnpm with-env probot run ./dist/index.js",
+    "start": "pnpm with-env probot run ./dist/index.js ",
+    "dev": "tsc && pnpm with-env probot run ./dist/index.js -p 3200",
     "clean": "git clean -xdf .next .turbo node_modules",
     "lint": "eslint .",
     "format": "prettier --check . --ignore-path ../../.gitignore",
