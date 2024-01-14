@@ -12,9 +12,6 @@ export const Header = () => {
           daisyUI
         </Link>
       </div>
-      <div className="ui_navbar-end">
-        <Link className="ui_btn">Button</Link>
-      </div>
     </div>
   );
 };

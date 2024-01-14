@@ -2,9 +2,9 @@ import { Breadcrumb } from "~/components/elements/breadcrumb";
 import { Footer, Header, Sidebar } from "~/components/layouts";
 
 export const BaseLayout = ({ children }: { children: React.ReactNode }) => (
-  <div>
+  <div className="bg-base-200">
     <Header />
-    <div className="container mx-auto px-28">
+    <div className="mx-aut container">
       <Breadcrumb />
       <div className="container mx-auto my-12 grid min-h-screen grid-cols-1 gap-4 md:grid-cols-4">
         <div className="colspan-1 md:col-span-3">{children}</div>

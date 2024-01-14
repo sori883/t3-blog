@@ -23,7 +23,7 @@ export async function PostContent(props: { slug: string }) {
 
   return (
     <div>
-      <div className="border-b-2 pb-5">
+      <div className="mb-5">
         <h1 className="mb-3 text-4xl font-medium">{post.title}</h1>
         <div className="ui_badge ui_badge-outline mb-1">
           {post.category.title}
@@ -45,8 +45,6 @@ export async function PostContent(props: { slug: string }) {
         </div>
       </details>
       <article>
-        {post.entry}
-        {post.githubUrl}
         <MarkdownRender html={html} />
       </article>
       <div className="mt-5">

@@ -16,6 +16,9 @@ export const test = `
 - Cloudflare DNS
 - Github Apps
 
+https://twitter.com/AlienCaptured/status/1744971347082854815
+
+
 構成を図にすると画像の通りです。  
 
 ![infra](images/0002/infra.png)
@@ -34,7 +37,9 @@ Contentfulにも、Wordpressの様な投稿画面はありますが、
 (読み込みが浅いだけかも...?)  
 また、タグ周りでfindOrCreateのような動作が必要になりましたが、それも見つからず(恐らく機能自体ない？)自分で実装することになったので、かなりの時間がかかりました。  
 
-https://github.com/sori883/conetentfulBlogApps/blob/main/src/index.ts](https://github.com/sori883/conetentfulBlogApps/blob/main/src/index.ts
+https://daisyui.com/docs/colors/
+
+https://www.youtube.com/watch?v=ReI0eJvTQf8
 
 また、画像配信はGCSを利用しています。  
 理由としては、Contentfulで画像をアップロードすると1枚につき、無料枠のレコードが1消費されるからです。  

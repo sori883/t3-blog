@@ -9,7 +9,7 @@ export async function PostIndexList(props: { page: string | undefined }) {
 
   if (posts.length === 0) {
     return (
-      <div className="relative flex w-full flex-col gap-4">
+      <div className="relative flex w-full flex-col gap-x-4 gap-y-12">
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
           <p className="text-2xl font-bold text-white">No post yet</p>
         </div>
@@ -19,7 +19,7 @@ export async function PostIndexList(props: { page: string | undefined }) {
 
   return (
     <div>
-      <div className="mb-12 grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-12">
         {posts.map((p) => (
           <PostCard key={p.id} post={p} />
         ))}

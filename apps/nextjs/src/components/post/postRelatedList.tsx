@@ -33,7 +33,7 @@ export function PostItem(props: {
   post: RouterOutputs["post"]["findRecommend"][number];
 }) {
   return (
-    <div className="mb-2 border-b-2 pb-3 pt-2">
+    <div className="mb-2 border-b-2 border-slate-300 pb-3 pt-2">
       <Link href={`/${props.post.categorySlug}/${props.post.slug}`}>
         <div className="flex min-h-24 w-full">
           <figure className="relative mr-5 h-24 w-24">

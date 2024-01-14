@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 
-import { AuthShowcase } from "~/components/auth-showcase";
 import { BaseLayout } from "~/components/layouts";
 import { PostIndexList } from "~/components/post";
 
@@ -13,7 +12,6 @@ export default function HomePage({
 }) {
   return (
     <BaseLayout>
-      <AuthShowcase />
       <Suspense>
         <PostIndexList page={searchParams.page} />
       </Suspense>
