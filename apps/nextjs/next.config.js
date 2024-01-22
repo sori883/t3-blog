@@ -12,6 +12,7 @@ const config = {
     "@acme/auth",
     "@acme/db",
     "@acme/validators",
+    "@acme/markdown",
   ],
   images: {
     domains: ["img.sori883.dev"],

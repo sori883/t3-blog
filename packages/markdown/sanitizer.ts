@@ -79,6 +79,7 @@ const attributes = {
     "src",
     "style",
     "width",
+    "name",
   ],
   img: ["alt", "class", "height", "loading", "src", "title", "width"],
   input: ["checked", "class", "type"],

@@ -16,8 +16,11 @@ export const test = `
 - Cloudflare DNS
 - Github Apps
 
-https://twitter.com/AlienCaptured/status/1744971347082854815
+https://x.com/refle_ookami/status/1747560093024157847
 
+https://x.com/sunoho/status/1749333576561373660
+
+https://github.com/sori883/t3-blog
 
 構成を図にすると画像の通りです。  
 

@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import type { Metadata } from "@acme/markdown";
 
 import { env } from "~/env";
+import { EmbedCard } from "./_embed/card";
+import { EmbedTwitter } from "./_embed/twitter";
 import { getTwitterXId } from "./_utils/getTwitterXId";
-import { EmbedCard } from "./card";
-import { EmbedTwitter } from "./twitter";
 
 export default function Embed({ params }: { params: { type: string } }) {
+  const ref = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -18,11 +19,40 @@ export default function Embed({ params }: { params: { type: string } }) {
   const [ogp, setOgp] = useState<Metadata>();
   const [twId, setTwId] = useState<string>("");
 
+  const sendEmbedSizeInfo = (height: number, name: string) => {
+    window.parent.postMessage(
+      JSON.stringify({
+        height: height + 10,
+        isEmbed: true,
+        name: name,
+      }),
+      "*",
+    );
+  };
+
   useEffect(() => {
     const dataURL = fetchIframeUrl(id!);
     setUrl(decodeURIComponent(dataURL));
     if (params.type === "card") void fetchOGP(dataURL);
     if (params.type === "tweet") void twitterEm(dataURL);
+
+    if (!ref.current) return;
+    if (!window.parent) return;
+
+    const elem = ref.current;
+    const observer = new ResizeObserver(() => {
+      sendEmbedSizeInfo(elem.offsetHeight, window.name);
+    });
+
+    if (elem) {
+      observer.observe(elem);
+    }
+
+    return () => {
+      if (elem) {
+        observer.unobserve(elem);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,9 +82,13 @@ export default function Embed({ params }: { params: { type: string } }) {
     setOgp(ogpData);
   }
 
-  if (params.type === "tweet") {
-    return <EmbedTwitter id={twId} />;
-  } else if (params.type === "card") {
-    return <EmbedCard ogp={ogp} url={url} />;
-  }
+  return (
+    <div>
+      {params.type === "tweet" ? (
+        <EmbedTwitter id={twId} ref={ref} />
+      ) : (
+        <EmbedCard ogp={ogp} url={url} ref={ref} />
+      )}
+    </div>
+  );
 }

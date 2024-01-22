@@ -68,7 +68,7 @@ export function generateEmbedServerIframe(
   const id = `zenn-embedded__${Math.random().toString(16).slice(2)}`;
   const iframeSrc = `${origin}//embed/${encodedType}?id=${id}`;
 
-  return `<span class="embed-block zenn-embedded zenn-embedded-${encodedType}"><iframe id="${id}" src="${iframeSrc}" data-content="${encodedSrc}" frameborder="0" scrolling="no" loading="lazy"></iframe></span>`;
+  return `<span class="embed-block zenn-embedded zenn-embedded-${encodedType}"><iframe name="${id}" id="${id}" src="${iframeSrc}" data-content="${encodedSrc}" frameborder="0" scrolling="no" loading="lazy"></iframe></span>`;
 }
 
 /** 渡された`type`の埋め込み要素のHTML文字列を返す */

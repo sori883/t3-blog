@@ -46,12 +46,13 @@ span.embed-block {
     display: block;
   }
 }
-.zenn-embedded-link-card {
+.zenn-embedded-card {
   margin: 1rem auto;
   iframe {
     height: 125px;
   }
 }
+
 .zenn-embedded-tweet,
 .zenn-embedded-mermaid,
 .zenn-embedded-github,
