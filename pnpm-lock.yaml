@@ -150,6 +150,9 @@ importers:
       sass:
         specifier: ^1.69.7
         version: 1.69.7
+      sharp:
+        specifier: ^0.33.1
+        version: 0.33.1
       superjson:
         specifier: 2.2.1
         version: 2.2.1

@@ -24,6 +24,8 @@ export const env = createEnv({
     DB_USERNAME: z.string(),
     CONTACT_URL: z.string().url(),
     APP_URL: z.string(),
+    R2_PUB_ENDPOINT: z.string(),
+    SIGNATURE_SECRET: z.string(),
   },
   /**
    * Specify your client-side environment variables schema here.
@@ -45,6 +47,8 @@ export const env = createEnv({
     VERCEL_URL: process.env.VERCEL_URL,
     CONTACT_URL: process.env.CONTACT_URL,
     APP_URL: process.env.APP_URL,
+    R2_PUB_ENDPOINT: process.env.R2_PUB_ENDPOINT,
+    SIGNATURE_SECRET: process.env.SIGNATURE_SECRET,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },

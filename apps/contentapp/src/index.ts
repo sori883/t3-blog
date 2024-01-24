@@ -4,6 +4,7 @@ import { loadFront } from "yaml-front-matter";
 
 import type { PostMeta } from "./types";
 import { isAllowedImage } from "./utils/isAllowedImage";
+import { generateSignature } from "./utils/signature";
 import { uploader } from "./utils/uploader";
 
 const app = (app: Probot) => {
@@ -132,6 +133,10 @@ const app = (app: Probot) => {
       }),
     );
 
+    // 署名を生成して問い合わせURLを作成する
+    const sign = generateSignature();
+    const makepostEndpoint = `${process.env.MAKEPOST_ENDPOINT!}/${sign}`;
+
     // 登録部分
     // eslint-disable-next-line
     articleAdds.map(async (item: any) => {
@@ -141,7 +146,7 @@ const app = (app: Probot) => {
         contentKeyName: "entry",
       }) as unknown as PostMeta;
 
-      const res = await axios.post(process.env.MAKEPOST_ENDPOINT!, {
+      const res = await axios.post(makepostEndpoint, {
         title: mdMeta.title,
         slug: mdMeta.slug,
         entry: mdMeta.entry,
@@ -191,7 +196,7 @@ const app = (app: Probot) => {
         contentKeyName: "entry",
       }) as unknown as PostMeta;
 
-      const res = await axios.post(process.env.MAKEPOST_ENDPOINT!, {
+      const res = await axios.post(makepostEndpoint, {
         title: mdMeta.title,
         slug: mdMeta.slug,
         entry: mdMeta.entry,
